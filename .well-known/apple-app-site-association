@@ -1,0 +1,11 @@
+{
+"applinks": {
+"apps": [],
+"details": [
+{
+"appID": "275559P549.com.storetoapp.troovyfoods",
+"paths": ["/collections/", "/products/", "/pages/", "/blogs/", "/orders", "/account/*"]
+}
+]
+}
+}

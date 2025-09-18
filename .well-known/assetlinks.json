@@ -1,0 +1,12 @@
+[
+{
+"relation": ["delegate_permission/common.handle_all_urls"],
+"target": {
+"namespace": "android_app",
+"package_name": "com.storetoapp.troovyfoods",
+"sha256_cert_fingerprints": [
+"AC:85:32:7B:9A:4A:F5:DA:49:59:4E:61:3C:B5:62:F8:03:BF:B2:98:1C:F0:2C:E1:3F:52:33:1E:AA:13:B5:07"
+]
+}
+}
+]
