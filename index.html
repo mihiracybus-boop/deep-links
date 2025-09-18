@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Open Troovy App</title>
@@ -42,6 +42,74 @@
 </head>
 <body>
   <p>If the app does not open automatically, <a href="troovy://">tap here to open app</a>.</p>
+  <p>Or <a href="https://www.troovyfoods.com/">view on website</a>.</p>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open Troovy App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript">
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /android/i.test(userAgent);
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+    const deepLink = "troovy://";
+    const playStore = "https://play.google.com/store/apps/details?id=com.storetoapp.troovyfoods";
+    const appStore = "https://apps.apple.com/in/app/troovy-foods/id6747583295";
+
+    function tryOpenApp() {
+      const start = Date.now();
+      window.location = deepLink;
+
+      setTimeout(() => {
+        const elapsed = Date.now() - start;
+        if (elapsed < 2000) {
+          if (isAndroid) {
+            window.location = playStore;
+          } else if (isIOS) {
+            window.location = appStore;
+          }
+        }
+      }, 1500);
+    }
+
+    window.onload = function () {
+      // Automatically click the button after page loads
+      const button = document.getElementById("open-button");
+      if (button) {
+        button.click();
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    a {
+      display: inline-block;
+      margin: 15px;
+      font-size: 16px;
+      text-decoration: none;
+      color: #007aff;
+    }
+    #open-button {
+      display: none; /* Hide the button (click is triggered programmatically) */
+    }
+  </style>
+</head>
+<body>
+  <h2>Opening Troovy App...</h2>
+
+  <!-- Hidden button to be auto-clicked -->
+  <a href="#" id="open-button" onclick="tryOpenApp()">Tap here to open app</a>
+
+  <!-- Visible fallback link if needed -->
+  <p>If nothing happens, <a href="troovy://">tap here to try again</a>.</p>
   <p>Or <a href="https://www.troovyfoods.com/">view on website</a>.</p>
 </body>
 </html>
