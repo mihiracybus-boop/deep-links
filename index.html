@@ -1,4 +1,132 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Troovy App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #fafafa;
+      color: #333;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+      animation: fadeIn 0.6s ease;
+    }
+
+    img.logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20%;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    p {
+      margin: 0.5rem 0 1.5rem;
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin: 8px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #2ecc71;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #27ae60;
+    }
+
+    .btn-secondary {
+      background: #f1f1f1;
+      color: #333;
+    }
+    .btn-secondary:hover {
+      background: #ddd;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script type="text/javascript">
+    function openApp() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+      const deepLink = "troovyfoods.com://";
+      const webFallback = "https://troovyfoods.com/";
+      const playStore = "https://play.google.com/store/apps/details?id=com.storetoapp.troovyfoods";
+      const appStore = "https://apps.apple.com/in/app/troovy-foods/id6747583295";  
+
+      const start = Date.now();
+
+      // Try to open app
+      window.location = deepLink;
+
+      setTimeout(function () {
+        const elapsed = Date.now() - start;
+        if (elapsed < 2000) {
+          if (isAndroid) {
+            window.location = playStore;
+          } else if (isIOS) {
+            window.location = appStore;
+          } else {
+            window.location = webFallback;
+          }
+        }
+      }, 1500);
+    }
+
+    window.onload = openApp;
+  </script>
+</head>
+<body>
+  <div class="card">
+    <img src="https://www.troovyfoods.com/logo.png" alt="Troovy Logo" class="logo" onerror="this.style.display='none'">
+    <h1>Open Troovy Foods</h1>
+    <p>We’re opening the Troovy app for you. If nothing happens, use the buttons below:</p>
+
+    <a href="troovyfoods.com://" class="button btn-primary">Open App</a>
+    <a href="https://troovyfoods.com/" class="button btn-secondary">Continue on Website</a>
+  </div>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Open Troovy App</title>
@@ -44,4 +172,4 @@
   <p>If the app does not open automatically, <a href="troovy://">tap here to open app</a>.</p>
   <p>Or <a href="https://www.troovyfoods.com/">view on website</a>.</p>
 </body>
-</html>
+</html> -->
