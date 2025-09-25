@@ -90,7 +90,58 @@
         }
       }
     </style>
+    <script type="text/javascript">
+      function openApp() {
+        const userAgent =
+          navigator.userAgent || navigator.vendor || window.opera;
 
+        const isAndroid = /android/i.test(userAgent);
+
+        const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+        const deepLink = "troovyfoods://";
+
+        const webFallback = "https://troovyfoods.com/";
+
+        const playStore =
+          "https://play.google.com/store/apps/details?id=com.storetoapp.troovyfoods";
+
+        const appStore =
+          "https://apps.apple.com/in/app/troovy-foods/id6747583295";
+
+        if (isAndroid) {
+          // Android can use direct location with timeout
+
+          window.location = deepLink;
+
+          setTimeout(() => {
+            window.location = playStore;
+          }, 1500);
+        } else if (isIOS) {
+          // Use iframe trick for iOS
+
+          const iframe = document.createElement("iframe");
+
+          iframe.style.display = "none";
+
+          iframe.src = deepLink;
+
+          document.body.appendChild(iframe);
+
+          setTimeout(() => {
+            window.location = appStore;
+          }, 1500);
+        } else {
+          // Fallback to website
+
+          window.location = webFallback;
+        }
+      }
+
+      window.onload = openApp;
+    </script>
+
+    <!-- 
     <script type="text/javascript">
       function openApp() {
         const userAgent =
@@ -125,7 +176,7 @@
       }
 
       window.onload = openApp;
-    </script>
+    </script> -->
   </head>
   <body>
     <div class="card">
